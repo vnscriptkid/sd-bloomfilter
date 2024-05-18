@@ -78,13 +78,15 @@ func EstimateParameters(n uint, p float64) (uint, int) {
 }
 
 func main() {
-	n := uint(1000) // Number of elements expected to be inserted
-	p := 0.01       // False positive probability
+	n := uint(1000 * 1000 * 1000) // Number of elements expected to be inserted
+	p := 0.01                     // False positive probability
 
 	size, hashCount := EstimateParameters(n, p)
 	bf := NewBloomFilter(size, hashCount)
 
 	fmt.Printf("Size: %d, Hash functions: %d\n", size, hashCount)
+	fmt.Printf("Size in KB: %f\n", float64(size)/8/1024)
+	fmt.Printf("Size in MB: %f\n", float64(size)/8/1024/1024)
 
 	data := []byte("example")
 	bf.Add(data)

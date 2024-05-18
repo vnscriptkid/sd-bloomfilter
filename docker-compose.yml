@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redislabs/rebloom:2.6.12  # Use the RedisBloom image
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
